@@ -1,0 +1,6 @@
+version=1
+id=3464551542
+title=Functional Car Lift
+description=Makes the carshop lifts functional, removing the need for a jack when the car is near the lift.
+tags=Build 41;Vehicles
+visibility=public
