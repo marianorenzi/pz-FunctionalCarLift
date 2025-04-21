@@ -1,0 +1,35 @@
+VERSION = 1,
+
+option FunctionalCarLift.Range
+{
+    type = integer,
+    default = 1,
+    min = 0,
+    max = 5,
+    page = CarLift,
+    translation = FunctionalCarLift_Range,
+}
+
+option FunctionalCarLift.RequirePower
+{
+    type = boolean,
+    default = true,
+    page = CarLift,
+    translation = FunctionalCarLift_RequirePower,
+}
+
+option FunctionalCarLift.ConvertVanilla
+{
+    type = boolean,
+    default = false,
+    page = CarLift,
+    translation = FunctionalCarLift_ConvertVanilla,
+}
+
+option FunctionalCarLift.RevertVanilla
+{
+    type = boolean,
+    default = false,
+    page = CarLift,
+    translation = FunctionalCarLift_RevertVanilla,
+}

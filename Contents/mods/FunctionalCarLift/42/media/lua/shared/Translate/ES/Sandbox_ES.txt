@@ -1,0 +1,15 @@
+Sandbox_ES = {
+    Sandbox_CarLift = "Autoelevador",
+    
+    Sandbox_FunctionalCarLift_Range = "Rango",
+    Sandbox_FunctionalCarLift_Range_tooltip = "La distancia al vehiculo desde donde el autoelevador puede operar.",
+
+    Sandbox_FunctionalCarLift_RequirePower = "Requiere Energia",
+    Sandbox_FunctionalCarLift_RequirePower_tooltip = "Indica si es necesario que haya energía para operar, ya sea hidroeléctrica o con generador..",
+
+    Sandbox_FunctionalCarLift_ConvertVanilla = "Convertir a Movibles",
+    Sandbox_FunctionalCarLift_ConvertVanilla_tooltip = "Convertir los mosaicos vanilla a movibles. Este proceso se puede deshacer con la opción de revertir.",
+
+    Sandbox_FunctionalCarLift_RevertVanilla = "Revertir a Vanilla",
+    Sandbox_FunctionalCarLift_RevertVanilla_tooltip = "Revertir mosaicos movibles a vanilla. Para convertir todos los mosaicos correctamente, esta opción debe permanecer habilitada hasta que TODOS los mosaicos sean revertidos.",
+}
