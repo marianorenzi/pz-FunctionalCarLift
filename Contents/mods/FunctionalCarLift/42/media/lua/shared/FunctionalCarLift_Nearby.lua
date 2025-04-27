@@ -28,7 +28,15 @@ local craftableColumnSearchResult = {
 }
 
 local function findCraftableLiftColumn(square, searchDirection, requireCenterPieces)
-  requireCenterPieces = requireCenterPieces or true
+  if requireCenterPieces == nil then requireCenterPieces = true end
+
+  if not square then 
+    print("[FunctionalCarLift] findCraftableLiftColumn(): starting square is nil")
+    return nil
+  end
+
+  -- print("[FunctionalCarLift] findCraftableLiftColumn(): finding crafted lift column. StartingSprite: "..FunctionalCarLift.SquareGetOneOfSprites(square, craftableLiftSprites).." Direction: "..searchDirection)
+
   -- validate there are center pieces
   local foundCenterPiece = false
 
@@ -52,13 +60,16 @@ local function findCraftableLiftColumn(square, searchDirection, requireCenterPie
     elseif searchResult and string.find(craftableColumnSearchResult[spriteName], searchDirection) then
       foundCenterPiece = true
     else
-      print("[FunctionalCarLift] Incomplete car lift structure.")
+      print("[FunctionalCarLift] findCraftableLiftColumn(): incompatible tile, invalid car lift structure.")
       square = nil
     end
   end
   
   -- return nil if a center piece was not found
-  if requireCenterPieces and not foundCenterPiece then return nil end
+  if square and requireCenterPieces and not foundCenterPiece then
+    print("[FunctionalCarLift] findCraftableLiftColumn(): found column but not center pieces, invalid car lift structure.")
+    square = nil
+  end
 
   return square
 end
@@ -84,12 +95,12 @@ function CheckCarLiftNearby(vehicle)
       for dx = -range, range do
         for dy = -range, range do
           local sq = square:getCell():getGridSquare(square:getX() + dx, square:getY() + dy, square:getZ())
-          if sq then
+          if sq ~= nil then
             for i=0, sq:getObjects():size()-1 do
               local obj = sq:getObjects():get(i)
-              if obj then
+              if obj ~= nil then
                 local spriteName = obj:getSprite():getName()
-                if FunctionalCarLift.IsCarLiftSprite(spriteName) or checkFullCraftableLift(square, spriteName) then
+                if FunctionalCarLift.IsCarLiftSprite(spriteName) or checkFullCraftableLift(sq, spriteName) then
                   carLiftFound = true
                   break
                 end

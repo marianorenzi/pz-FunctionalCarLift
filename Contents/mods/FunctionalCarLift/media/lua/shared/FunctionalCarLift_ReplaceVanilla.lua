@@ -1,47 +1,39 @@
 local convertVanilla = {
-  ["location_business_machinery_01_11"] = "car_lift_01_0",
-  ["location_business_machinery_01_13"] = "car_lift_01_3",
-  ["location_business_machinery_01_2"] = "car_lift_01_7",
-  ["location_business_machinery_01_0"] = "car_lift_01_4",
-  ["location_business_machinery_01_9"] = "next_WE",
-  ["location_business_machinery_01_4"] = "next_NS",
+  -- vanilla conversion
+  ["location_business_machinery_01_11"] = "car_lift_01_8", -- W
+  ["location_business_machinery_01_13"] = "car_lift_01_9", -- E
+  ["location_business_machinery_01_2"] = "car_lift_01_11", -- N
+  ["location_business_machinery_01_0"] = "car_lift_01_10", -- S
+  ["location_business_machinery_01_9"] = "car_lift_01_12", -- WE
+  ["location_business_machinery_01_4"] = "car_lift_01_13", -- NS
   ["location_business_machinery_01_1"] = "remove",
   ["location_business_machinery_01_3"] = "remove",
   ["location_business_machinery_01_5"] = "remove",
   ["location_business_machinery_01_8"] = "remove",
   ["location_business_machinery_01_10"] = "remove",
   ["location_business_machinery_01_12"] = "remove",
+  -- backward compatibility conversion (old tiles)
+  ["car_lift_01_0"] = "car_lift_01_8", -- W
+  ["car_lift_01_3"] = "car_lift_01_9", -- E
+  ["car_lift_01_7"] = "car_lift_01_11", -- N
+  ["car_lift_01_4"] = "car_lift_01_10", -- S
+  ["car_lift_01_1"] = "car_lift_01_12", -- WE
+  ["car_lift_01_2"] = "car_lift_01_12", -- WE
+  ["car_lift_01_5"] = "car_lift_01_13", -- NS
+  ["car_lift_01_6"] = "car_lift_01_13", -- NS
 }
 
-local convertVanillaNextWE = {
-  ["car_lift_01_0"] = "car_lift_01_1",
-  ["location_business_machinery_01_11"] = "car_lift_01_1",
-  ["car_lift_01_1"] = "car_lift_01_2",
-  ["location_business_machinery_01_9"] = "car_lift_01_2",
-}
-
-local convertVanillaIsPrevWE = {
-  "car_lift_01_0",
-  "location_business_machinery_01_11",
-  "car_lift_01_1",
-  "location_business_machinery_01_9",
-}
-
-local convertVanillaNextNS = {
-  ["car_lift_01_7"] = "car_lift_01_6",
-  ["location_business_machinery_01_2"] = "car_lift_01_6",
-  ["car_lift_01_6"] = "car_lift_01_5",
-  ["location_business_machinery_01_4"] = "car_lift_01_5",
-}
-
-local convertVanillaIsPrevNS = {
-  "car_lift_01_7",
-  "location_business_machinery_01_2",
-  "car_lift_01_6",
-  "location_business_machinery_01_4",
+FunctionalCarLift.CraftableCarLiftSpriteNames = {
+  ["car_lift_01_8"] = true, -- W
+  ["car_lift_01_9"] = true, -- E
+  ["car_lift_01_10"] = true, -- S
+  ["car_lift_01_11"] = true, -- N
+  ["car_lift_01_12"] = true, -- WE
+  ["car_lift_01_13"] = true, -- NS
 }
 
 local revertVanilla = {
+  -- backward compatibility (old tiles)
   ["car_lift_01_0"] = {"location_business_machinery_01_8", "location_business_machinery_01_11"},
   ["car_lift_01_1"] = {"location_business_machinery_01_9", "location_business_machinery_01_12"},
   ["car_lift_01_2"] = {"location_business_machinery_01_9", "location_business_machinery_01_12"},
@@ -50,6 +42,13 @@ local revertVanilla = {
   ["car_lift_01_5"] = {"location_business_machinery_01_4", "location_business_machinery_01_1"},
   ["car_lift_01_6"] = {"location_business_machinery_01_4", "location_business_machinery_01_1"},
   ["car_lift_01_7"] = {"location_business_machinery_01_5", "location_business_machinery_01_2"},
+  -- craftable tiles
+  ["car_lift_01_8"] = {"location_business_machinery_01_8", "location_business_machinery_01_11"}, -- W
+  ["car_lift_01_12"] = {"location_business_machinery_01_9", "location_business_machinery_01_12"}, -- WE
+  ["car_lift_01_9"] = {"location_business_machinery_01_10", "location_business_machinery_01_13"}, -- E
+  ["car_lift_01_10"] = {"location_business_machinery_01_3", "location_business_machinery_01_0"}, -- S
+  ["car_lift_01_13"] = {"location_business_machinery_01_4", "location_business_machinery_01_1"}, -- NS
+  ["car_lift_01_11"] = {"location_business_machinery_01_5", "location_business_machinery_01_2"}, -- N
 }
 
 local function convertVanillaSprite(square)
@@ -64,26 +63,6 @@ local function convertVanillaSprite(square)
       print("[FunctionalCarLift] Removing filler car lift tile "..spriteName.." at X="..square:getX()..", Y="..square:getY())
       square:RemoveTileObject(obj)
       if isServer() then square:transmitRemoveItemFromSquare(obj) end
-    elseif conversionResult == "next_WE" then
-      -- replace center WE pieces
-      local prevSprite = FunctionalCarLift.SquareGetOneOfSprites(square:getCell():getGridSquare(square:getX() - 1, square:getY(), square:getZ()), convertVanillaIsPrevWE)
-      if prevSprite ~= nil then
-        print("[FunctionalCarLift] Replacing center car lift tile "..spriteName.." with "..convertVanillaNextWE[prevSprite].." at X="..square:getX()..", Y="..square:getY())
-        obj:setSpriteFromName(convertVanillaNextWE[prevSprite])
-        if isServer() then obj:transmitUpdatedSpriteToClients(); end
-      else
-        print("[FunctionalCarLift] ERROR: Found vanilla car lift WE center tile without column at X="..square:getX()..", Y="..square:getY())
-      end
-    elseif conversionResult == "next_NS" then
-      -- replace center NS pieces
-      local prevSprite = FunctionalCarLift.SquareGetOneOfSprites(square:getCell():getGridSquare(square:getX(), square:getY() - 1, square:getZ()), convertVanillaIsPrevNS)
-      if prevSprite ~= nil then
-        print("[FunctionalCarLift] Replacing center car lift tile "..spriteName.." with "..convertVanillaNextNS[prevSprite].." at X="..square:getX()..", Y="..square:getY())
-        obj:setSpriteFromName(convertVanillaNextNS[prevSprite])
-        if isServer() then obj:transmitUpdatedSpriteToClients(); end
-      else
-        print("[FunctionalCarLift] ERROR: Found vanilla car lift NS center tile without column at X="..square:getX()..", Y="..square:getY())
-      end
     elseif conversionResult ~= nil then
       -- replace columns
       print("[FunctionalCarLift] Replacing column car lift tile "..spriteName.." with "..conversionResult.." at X="..square:getX()..", Y="..square:getY())
