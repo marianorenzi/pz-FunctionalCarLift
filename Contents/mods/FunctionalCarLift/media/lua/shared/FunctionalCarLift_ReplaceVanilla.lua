@@ -52,18 +52,6 @@ local revertVanilla = {
   ["car_lift_01_7"] = {"location_business_machinery_01_5", "location_business_machinery_01_2"},
 }
 
-local function squareGetOnOfSprites(square, spriteNames)
-  if square == nil or spriteNames == nil then return false end
-  
-  for i = square:getObjects():size() - 1, 0, -1 do
-    for _, spriteName in ipairs(spriteNames) do
-      if square:getObjects():get(i):getSprite():getName() == spriteName then return spriteName end
-    end
-  end
-  
-  return nil
-end
-
 local function convertVanillaSprite(square)
   local objects = square:getObjects()
   for i = objects:size() - 1, 0, -1 do
@@ -78,7 +66,7 @@ local function convertVanillaSprite(square)
       if isServer() then square:transmitRemoveItemFromSquare(obj) end
     elseif conversionResult == "next_WE" then
       -- replace center WE pieces
-      local prevSprite = squareGetOnOfSprites(square:getCell():getGridSquare(square:getX() - 1, square:getY(), square:getZ()), convertVanillaIsPrevWE)
+      local prevSprite = FunctionalCarLift.SquareGetOneOfSprites(square:getCell():getGridSquare(square:getX() - 1, square:getY(), square:getZ()), convertVanillaIsPrevWE)
       if prevSprite ~= nil then
         print("[FunctionalCarLift] Replacing center car lift tile "..spriteName.." with "..convertVanillaNextWE[prevSprite].." at X="..square:getX()..", Y="..square:getY())
         obj:setSpriteFromName(convertVanillaNextWE[prevSprite])
@@ -88,7 +76,7 @@ local function convertVanillaSprite(square)
       end
     elseif conversionResult == "next_NS" then
       -- replace center NS pieces
-      local prevSprite = squareGetOnOfSprites(square:getCell():getGridSquare(square:getX(), square:getY() - 1, square:getZ()), convertVanillaIsPrevNS)
+      local prevSprite = FunctionalCarLift.SquareGetOneOfSprites(square:getCell():getGridSquare(square:getX(), square:getY() - 1, square:getZ()), convertVanillaIsPrevNS)
       if prevSprite ~= nil then
         print("[FunctionalCarLift] Replacing center car lift tile "..spriteName.." with "..convertVanillaNextNS[prevSprite].." at X="..square:getX()..", Y="..square:getY())
         obj:setSpriteFromName(convertVanillaNextNS[prevSprite])

@@ -1,0 +1,4 @@
+Recipes_ES {
+  Recipe_Craft_Car_Lift_Column = "Construir Autoelevador (columna)"
+  Recipe_Craft_Car_Lift_Center = "Construir Autoelevador (centro)"
+}

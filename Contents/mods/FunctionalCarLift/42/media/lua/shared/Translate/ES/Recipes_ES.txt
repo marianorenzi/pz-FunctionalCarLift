@@ -1,0 +1,4 @@
+Recipes_ES {
+  Recipe_FunctionalCarLift.CraftCarLiftColumn = "Construir Autoelevador (columna)"
+  Recipe_FunctionalCarLift.CraftCarLiftCenter = "Construir Autoelevador (centro)"
+}
