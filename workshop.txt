@@ -33,5 +33,5 @@ description=I would like to thank to the mod development channel on the official
 description=
 description=Workshop ID: 3464551542
 description=Mod ID: FunctionalCarLift
-tags=Build 41;Build 42;Vehicles
+tags=Build 41;Build 42;Multiplayer;Vehicles
 visibility=public
