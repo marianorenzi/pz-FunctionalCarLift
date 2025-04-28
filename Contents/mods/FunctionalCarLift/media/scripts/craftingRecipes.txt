@@ -16,7 +16,7 @@ module FunctionalCarLift {
     Category:Mechanical,
     Result:Moveables.car_lift_01_8,
     CanBeDoneFromFloor:true,
-    SkillRequired:Mechanics=6;MetalWelding=4,
+    SkillRequired:Mechanics=4;MetalWelding=3,
     Sound:Screwdriver,
     Time:150.0,
   }
@@ -34,7 +34,7 @@ module FunctionalCarLift {
     Category:Mechanical,
     Result:Moveables.car_lift_01_12,
     CanBeDoneFromFloor:true,
-    SkillRequired:Mechanics=6;MetalWelding=4,
+    SkillRequired:Mechanics=4;MetalWelding=3,
     Sound:Screwdriver,
     Time:150.0,
   }

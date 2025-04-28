@@ -4,6 +4,8 @@ module FunctionalCarLift {
     time = 150,
     category = Mechanical,
     needToBeLearn = true,
+    skillRequired = Mechanics:4;MetalWelding:3,
+    autoLearnAll = Mechanics:6;MetalWelding:4,
     tags = AnySurfaceCraft;CanBeDoneFromFloor,
 
     inputs {
@@ -27,6 +29,8 @@ module FunctionalCarLift {
     time = 150,
     category = Mechanical,
     needToBeLearn = true,
+    skillRequired = Mechanics:4;MetalWelding:3,
+    autoLearnAll = Mechanics:6;MetalWelding:4,
     tags = AnySurfaceCraft;CanBeDoneFromFloor,
 
     inputs {

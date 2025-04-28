@@ -28,12 +28,12 @@ FunctionalCarLift.CustomCarLiftSpriteNames = {
 }
 
 FunctionalCarLift.CraftableCarLiftSpriteNames = {
-  ["car_lift_01_8"] = true,
-  ["car_lift_01_9"] = true,
-  ["car_lift_01_10"] = true,
-  ["car_lift_01_11"] = true,
-  ["car_lift_01_12"] = true,
-  ["car_lift_01_13"] = true,
+  ["car_lift_01_8"] = true, -- W
+  ["car_lift_01_9"] = true, -- E
+  ["car_lift_01_10"] = true, -- S
+  ["car_lift_01_11"] = true, -- N
+  ["car_lift_01_12"] = true, -- WE
+  ["car_lift_01_13"] = true, -- NS
 }
 
 function FunctionalCarLift.IsCarLiftSprite(spriteName)
