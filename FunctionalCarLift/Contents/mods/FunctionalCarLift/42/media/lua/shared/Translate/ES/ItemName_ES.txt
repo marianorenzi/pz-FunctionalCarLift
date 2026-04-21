@@ -1,5 +1,0 @@
-ItemName_ES = {
-  ItemName_FunctionalCarLift.CarLiftMag = "Carzone Commodities: Autoelevador"
-  ItemName_FunctionalCarLift.CarLiftColumn = "Autoelevador (columna)"
-  ItemName_FunctionalCarLift.CarLiftCenter = "Autoelevador (centro)"
-}

@@ -113,10 +113,10 @@ function CheckCarLiftNearby(vehicle)
   end
 
   if carLiftFound == true then
-    print("[FunctionalCarLift] Car Lift found nearby")
+    -- print("[FunctionalCarLift] Car Lift found nearby")
     FunctionalCarLift.CarsNearLift[vehicle:getKeyId()] = true
   else
-    print("[FunctionalCarLift] Car Lift not found or no power available")
+    -- print("[FunctionalCarLift] Car Lift not found or no power available")
     FunctionalCarLift.CarsNearLift[vehicle:getKeyId()] = nil
   end
 end

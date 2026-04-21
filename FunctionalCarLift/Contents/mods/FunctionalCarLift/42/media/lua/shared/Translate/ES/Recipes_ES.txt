@@ -1,4 +1,0 @@
-Recipes_ES = {
-  Recipe_CraftCarLiftColumn = "Construir Autoelevador (columna)"
-  Recipe_CraftCarLiftCenter = "Construir Autoelevador (centro)"
-}
